@@ -222,7 +222,7 @@ layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "jQContextMenu"], 
   !function () {
     var notice = sessionStorage.getItem("notice");
     if (notice != "true") {
-      noticeFun();
+     // noticeFun();
     }
   }();
 

@@ -1,0 +1,244 @@
+[
+
+    {
+        "title": "档案管理",
+        "href": "pages/console1.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe6b8;",
+         "isCheck":false,
+          "spread": false
+    },
+     {
+        "title": "字段管理",
+        "href": "",
+        "icon": "&#xe705;",
+        "spread": false,
+        "children": [
+            {
+                "title": "文章列表",
+                "href": "pages/often/article.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "留言列表",
+                "href": "pages/often/message.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "产品列表",
+                "href": "pages/often/product.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "下载列表",
+                "href": "pages/often/download.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            }
+        ]
+    },
+    {
+        "title": "用户管理",
+        "href": "",
+        "icon": "&#xe66f;",
+        "spread": false,
+        "children": [
+            {
+                "title": "用户列表",
+                "href": "pages/member/user.html",
+                "fontFamily": "layui-icon",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "角色列表",
+                "href": "pages/member/role.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "权限列表",
+                "href": "pages/member/permission.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            }
+        ]
+    },
+    {
+        "title": "统计分析",
+        "href": "",
+        "icon": "&#xe62c;",
+        "spread": false,
+        "children": [
+            {
+                "title": "地图",
+                "fontFamily": "ok-icon",
+                "icon": "&#xe882;",
+                "spread": false,
+                "children": [
+                    {
+                        "title": "中国地图",
+                        "href": "pages/chart/chart-china.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    },
+                    {
+                        "title": "区域地图",
+                        "href": "pages/chart/chart-area.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    }
+                ]
+            },
+            {
+                "title": "数据图",
+                "fontFamily": "ok-icon",
+                "icon": "ok-icon-shuju1",
+                "spread": false,
+                "children": [
+                    {
+                        "title": "统计图",
+                        "href": "pages/chart/chart1.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    },
+                    {
+                        "title": "折线图",
+                        "href": "pages/chart/chart2.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    },
+                    {
+                        "title": "馅饼图",
+                        "href": "pages/chart/chart4.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    },
+                    {
+                        "title": "圆形图",
+                        "href": "pages/chart/chart5.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    },
+                    {
+                        "title": "指数图",
+                        "href": "pages/chart/chart6.html",
+                        "icon": "&#xe62e;",
+                        "spread": false
+                    }
+                ]
+            }
+        ]
+    },
+   
+    {
+        "title": "角色管理",
+        "href": "",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe68a;",
+        "spread": false,
+        "children": [
+            {
+                "title": "系统设置",
+                "href": "pages/system/setup.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "日志列表",
+                "href": "pages/system/log.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "屏蔽词",
+                "href": "pages/system/shield.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "登录页面",
+                "href": "pages/login.html",
+                "icon": "&#xe609;",
+                "spread": false,
+                "target": "_blank"
+            },
+            {
+                "title": "403页面",
+                "href": "pages/system/403.html",
+                "icon": "&#xe61c;",
+                "spread": false
+            },
+            {
+                "title": "404页面",
+                "href": "pages/system/404.html",
+                "icon": "&#xe61c;",
+                "spread": false
+            },
+            {
+                "title": "500页面",
+                "href": "pages/system/500.html",
+                "icon": "&#xe61c;",
+                "spread": false
+            }
+        ]
+    },
+    {
+        "title": "销售人员信息管理",
+        "href": "",
+        "icon": "&#xe636;",
+        "spread": false,
+        "children": [
+            {
+                "title": "Neditor",
+                "href": "pages/txtedit/Neditor.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "wangEditor",
+                "href": "pages/txtedit/wangEditor.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "CKEditor",
+                "href": "pages/txtedit/CKEditor.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "layedit",
+                "href": "pages/txtedit/layedit.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            }
+        ]
+    },
+    {
+        "title": "系统安全",
+        "href": "",
+        "icon": "&#xe62d;",
+        "spread": false,
+        "children": [
+
+            {
+                "title": "Datatables",
+                "href": "pages/datatable/datatables.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            },
+            {
+                "title": "bsgrid",
+                "href": "pages/datatable/bsgrid.html",
+                "icon": "&#xe62e;",
+                "spread": false
+            }
+        ]
+    }
+   
+   
+]

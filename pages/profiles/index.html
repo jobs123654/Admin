@@ -10,22 +10,94 @@
     <div class="ok-body">
         <!--模糊搜索区域-->
         <div class="layui-row">
-            <form class="layui-form layui-col-md12 ok-search">
-                 <input class="layui-input" placeholder="省份" autocomplete="off" id="shengfen" name="shengfen">
-                 
-                <input class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
-                <input class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
-                <input class="layui-input" placeholder="请输入标题" autocomplete="off" name="title">
-                <button class="layui-btn" lay-submit="" lay-filter="search">
-                    <i class="layui-icon layui-icon-search"></i>
-                </button>
+            <form class="layui-form ">
+                <div class="layui-form-item">
+
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">省份</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">客户类型</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">相关业务</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">意向产品</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">潜在价值</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">跟踪阶段</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">现用软件品牌</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">信息提供人</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <select >
+                                <option value="0">信息来源</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <input class="layui-input" placeholder="创建时间" autocomplete="off" id="startTime" name="startTime">
+                    </div>
+                    <div class="layui-inline">
+                        <input class="layui-input" placeholder="更细时间" autocomplete="off" id="endTime" name="endTime">
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn" lay-submit="" lay-filter="search">
+                            <i class="layui-icon layui-icon-search"></i>
+                       </button>
+                </div>
+                </div>
             </form>
         </div>
         <!--数据表格-->
         <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
     </div>
 
-    
     <!--js逻辑-->
     <script src="../../lib/layui/layui.js"></script>
     <script>
@@ -37,16 +109,14 @@
             let okLayer = layui.okLayer;
             let okUtils = layui.okUtils;
             let okMock = layui.okMock;
-
             util.fixbar({});
-
             laydate.render({elem: "#startTime", type: "datetime"});
             laydate.render({elem: "#endTime", type: "datetime"});
 
             let articleTable = table.render({
                 elem: "#tableId",
                 url: okMock.api.listArticle,
-                limit: 20,
+                limit: 10,
                 page: true,
                 even: true,
                 toolbar: "#toolbarTpl",
@@ -54,12 +124,12 @@
                 cols: [[
                     {type: "checkbox", fixed: "left"},
                     {field: "id", title: "ID", width: 170, sort: true},
-                    {field: "title", title: "标题", width: 150},
-                    {field: "url", title: "链接", width: 250, templet: "#urlTpl"},
-                    {field: "publisher", title: "发布者", width: 100},
-                    {field: "readSize", title: "阅读量", width: 80},
-                    {field: "isTop", title: "是否置顶", width: 100, align: "center", templet: "#topTpl"},
-                    {field: "status", title: "发布状态", width: 110, align: "center", templet: "#statusTpl"},
+                    {field: "title", title: "省份", width: 150},
+                    {field: "url", title: "客户名称", width: 250, templet: "#urlTpl"},
+                    {field: "publisher", title: "客户类型", width: 100},
+                    {field: "readSize", title: "意向产品", width: 80},
+                    {field: "isTop", title: "现用软件品牌", width: 100, align: "center", templet: "#topTpl"},
+                    {field: "status", title: "信息来源", width: 110, align: "center", templet: "#statusTpl"},
                     {field: "createTime", title: "创建时间", width: 150},
                     {field: "updateTime", title: "更新时间", width: 150},
                     {title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
@@ -68,7 +138,7 @@
                     console.log(res, curr, count)
                 }
             });
-
+            //查找档案
             form.on("submit(search)", function (data) {
                 articleTable.reload({
                     where: data.field,
@@ -91,8 +161,13 @@
                     case "add":
                         add();
                         break;
+                    case "import":
+                        import1();
+                        break;
+
                 }
             });
+
 
             table.on("tool(tableFilter)", function (obj) {
                 let data = obj.data;
@@ -100,8 +175,14 @@
                     case "edit":
                         edit(data.id);
                         break;
-                    case "del":
-                        del(data.id);
+                    // case "del":
+                    //     del(data.id);
+                    //     break;
+                    case "trace":
+                         trace(0);
+                        break;
+                    case "info":
+                        info();
                         break;
                 }
             });
@@ -135,7 +216,6 @@
                     }
                 });
             }
-
             function batchDel() {
                 okLayer.confirm("确定要批量删除吗？", function (index) {
                     layer.close(index);
@@ -150,19 +230,37 @@
                     }
                 });
             }
-
+            // 录入档案
             function add() {
-                okLayer.open("添加文章", "article-add.html", "90%", "90%", null, function () {
+                okLayer.open("添加档案", "profiles-add.html", "90%", "90%", null, function () {
                     articleTable.reload();
                 })
             }
-
+            // 导入档案
+            function import1() {
+                okLayer.open("导入档案", "profiles-import.html", "37%", "50%", null, function () {
+                    articleTable.reload();
+                })
+            }
+            // 档案详情
+            function info() {
+                okLayer.open("档案详情", "profiles-info.html", "90%", "90%", null, function () {
+                    articleTable.reload();
+                })
+            }
+            // 编辑档案
             function edit(id) {
-                okLayer.open("编辑文章", "article-edit.html?id=" + id, "90%", "90%", null, function () {
+                okLayer.open("编辑档案", "profiles-edit.html?id=" + id, "90%", "90%", null, function () {
                     articleTable.reload();
                 })
             }
-
+            // 跟踪情况
+            function trace(id) {
+                okLayer.open("跟踪记录", "../trace/trace-situation.html?id=" + id, "90%", "90%", null, function () {
+                    articleTable.reload();
+                })
+            }
+            //查看详情
             function del(id) {
                 okLayer.confirm("确定要删除吗？", function () {
                     okUtils.ajax("/article/batchDel", "delete", {idsStr: id}, true).done(function (response) {
@@ -178,10 +276,12 @@
     <!-- 头工具栏模板 -->
     <script type="text/html" id="toolbarTpl">
         <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量上架</button>
-            <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>
-            <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>
-            <button class="layui-btn layui-btn-sm" lay-event="add">添加文章</button>
+<!--            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量上架</button>-->
+<!--            <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>-->
+<!--            <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>-->
+            <button class="layui-btn layui-btn-sm" lay-event="add">录入档案</button>
+            <button class="layui-btn layui-btn-sm  layui-btn-normal" lay-event="import">导入档案</button>
+<!--            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">导出档案</button>-->
         </div>
     </script>
     <!-- 链接模板 -->
@@ -210,8 +310,9 @@
     </script>
     <!-- 行工具栏模板 -->
     <script type="text/html" id="operationTpl">
+        <a href="javascript:" title="详情" lay-event="info"><i class="layui-icon">&#xe645;</i></a>
         <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
-        <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+        <a href="javascript:" title="跟踪情况" lay-event="trace"><i class="layui-icon">&#xe636;</i></a>
     </script>
 </body>
 </html>

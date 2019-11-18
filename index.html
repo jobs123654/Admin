@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>ok-admin v2.0 </title>
+    <title>CRM Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="ok-admin v2.0,ok-admin网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
-    <meta name="description" content="ok-admin v2.0，顾名思义，很赞的后台模版，它是一款基于Layui框架的轻量级扁平化且完全免费开源的网站后台管理系统模板，适合中小型CMS后台系统。">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="css/okadmin.css">
 </head>
@@ -82,12 +80,12 @@
         <!--左侧导航区域-->
         <div class="layui-side layui-side-menu okadmin-bg-20222A ok-left">
             <div class="layui-side-scroll okadmin-side">
-                <div class="okadmin-logo">ok-admin v2.0</div>
+                <div class="okadmin-logo">CRM Admin</div>
                 <div class="user-photo">
-                    <a class="img" title="我的头像">
-                        <img src="images/avatar.png" class="userAvatar">
+                    <a class="img" title="头像">
+                        <img src="images/icon.png" class="userAvatar">
                     </a>
-                    <p>你好！<span class="userName">bobi</span>, 欢迎登录</p>
+<!--                    <p>你好！<span class="userName">bobi</span>, 欢迎登录</p>-->
                 </div>
                 <!--左侧导航菜单-->
                 <ul id="navBar" class="layui-nav okadmin-nav okadmin-bg-20222A layui-nav-tree">
@@ -100,14 +98,18 @@
                 </ul>
             </div>
         </div>
-
         <!-- 内容主体区域 -->
         <div class="content-body">
             <div class="layui-tab ok-tab" lay-filter="ok-tab" lay-allowClose="true" lay-unauto>
-                <div data-id="left" id="okLeftMove"
-                     class="ok-icon ok-icon-back okadmin-tabs-control move-left okNavMove"></div>
+                <div data-id="left" id="okLeftMove"  class="ok-icon ok-icon-back okadmin-tabs-control move-left okNavMove"></div>
+                <!-- 筛选-->
+                <div class="ok-icon layui-icon-about okadmin-tabs-control  okNavMove">
+                </div>
+                <!---->
                 <div data-id="right" id="okRightMove"
-                     class="ok-icon ok-icon-right okadmin-tabs-control move-right okNavMove"></div>
+                     class="ok-icon ok-icon-right okadmin-tabs-control move-right okNavMove">
+                </div>
+
                 <div class="layui-icon okadmin-tabs-control ok-right-nav-menu" style="right: 0;">
                     <ul class="okadmin-tab">
                         <li class="no-line okadmin-tab-item">

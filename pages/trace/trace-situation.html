@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>跟踪情况</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <!--form表单-->
+        <!--基本信息-->
+        <form class="layui-form layui-form-pane ok-form">
+            <div class="layui-form-item">
+                <table  id="tableId" lay-filter="tableFilter" class="layui-hide"></table>
+            </div>
+        </form>
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <!-- 头工具栏模板 -->
+    <script type="text/html" id="toolbarTpl">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="add1">添加</button>
+        </div>
+    </script>
+    <!-- 行工具栏模板 -->
+    <script type="text/html" id="operationTpl">
+        <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+        <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+    </script>
+    <script>
+        layui.use(["form","table", "okUtils", "okLayer"], function () {
+            let form = layui.form;
+            let okUtils = layui.okUtils;
+            let util = layui.util;
+            let okLayer = layui.okLayer;
+            let table = layui.table;
+            let okMock = layui.okMock;
+            util.fixbar({});
+            //渲染联系人信息
+           //ID 姓名/起始跟踪时间/结束跟踪时间/有无采购
+            let articleTable =  table.render({
+                elem: "#tableId",
+                url: 'http://192.168.0.22/Data/trace.json',
+                limit: 20,
+                page: true,
+                even: true,
+                toolbar: "#toolbarTpl",
+                size: "sm",
+                cols: [[
+                    {field: "id", title: "ID", width: 170, sort: true},
+                    {field: "name", title: "姓名", width: 150},
+                    {field: "startTime", title: "开始跟踪时间", width: 200},
+                    {field: "endTime", title: "结束跟踪时间", width: 200},
+                    {field: "purchase", title: "是否采购", width: 100},
+                    {field: "createTime", title: "创建时间", width: 150},
+                    {field: "createMan", title: "创建者", width: 150},
+                    {title: "oper",  title: "操作",width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
+                ]],
+                done: function (res, curr, count) {
+                     console.log(res, curr, count)
+                 }
+            });
+            form.on("submit(search)", function (data) {
+                articleTable.reload({
+                    where: data.field,
+                    page: {curr: 1}
+                });
+                return false;
+            });
+            table.on("tool(tableFilter)", function (obj) {
+                let data = obj.data;
+                switch (obj.event) {
+                    case "edit":
+                        break;
+                    case "del":
+                        okLayer.confirm("确定要删除吗？", function () {
+                            // okUtils.ajax("/article/batchDel", "delete", {idsStr: id}, true).done(function (response) {
+                            //     console.log(response);
+                            //     okUtils.tableSuccessMsg(response.msg);
+                            // }).fail(function (error) {
+                            //     console.log(error)
+                            // });
+                        })
+                        break;
+                }
+            });
+            table.on("toolbar(tableFilter)", function (obj) {
+                switch (obj.event) {
+                    case "add1":
+                        add1();
+                        break;
+                }
+            });
+            // 录入档案
+            function add1() {
+
+                okLayer.open("添加跟踪记录", "trace-add.html", "40%", "38%", null, function () {
+                    //articleTable.reload();
+                })
+            }
+
+        });
+    </script>
+
+</body>
+</html>

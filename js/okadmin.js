@@ -1,4 +1,4 @@
-/^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
+// /^http(s*):\/\//.test(location.href) || alert('请先部署到 localhost 下再访问');
 
 var objOkTab = "";
 layui.use(["element", "layer", "okUtils", "okTab", "okLayer", "jQContextMenu"], function () {

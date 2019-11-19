@@ -4,41 +4,37 @@
     <meta charset="UTF-8">
     <title>折线图</title>
     <link rel="stylesheet" href="../../css/oksub.css">
+ <style>
+     /*#month,#jd,#seal{*/
+     /*    display: none;*/
+     /*}*/
+ </style>
 </head>
 <body>
 <div class="ok-body">
     <form class="layui-form layui-form-pane ok-form">
         <div class="layui-form-item">
-            <div class="layui-inline">
+            <div class="layui-inline" id="year">
                 <div class="layui-input-inline">
-                    <select name="choiceObj" id="year" lay-filter="choiceYear">
-                        <option value="公司" selected>选择年份</option>
+                    <select  lay-filter="choiceYear">
+                        <option value="选择年份" selected>选择年份</option>
                         <option value="2018年">2018年</option>
                         <option value="2017年">2017年</option>
                         <option value="2016年">2016年</option>
                     </select>
                 </div>
             </div>
-            <div class="layui-inline">
+            <div class="layui-inline"  id="jd">
                 <div class="layui-input-inline">
-                    <select name="choiceObj" id="jd" lay-filter="choiceJd">
-                        <option value="公司" selected>选择年份</option>
-                        <option value="2018年">2018年</option>
-                        <option value="2017年">2017年</option>
-                        <option value="2016年">2016年</option>
+                    <select  lay-filter="choiceJd">
+
+                        <option value="季度">季度</option>
+                        <option value="每月">月份</option>
+
                     </select>
                 </div>
             </div>
-            <div class="layui-inline">
-                <div class="layui-input-inline">
-                    <select name="choiceObj" id="month" lay-filter="choiceMonth">
-                        <option value="公司" selected>选择年份</option>
-                        <option value="2018年">2018年</option>
-                        <option value="2017年">2017年</option>
-                        <option value="2016年">2016年</option>
-                    </select>
-                </div>
-            </div>
+
 
             <div class="layui-inline">
                 <div class="layui-input-inline">
@@ -48,12 +44,11 @@
                     </select>
                 </div>
             </div>
-            <div class="layui-inline">
-                <div  id="seal" class="layui-input-inline" >
-                    <select  lay-filter="choiceSeal">
+            <div class="layui-inline" id="seal">
+                <div   class="layui-input-inline" >
+                    <select   lay-filter="choiceSeal">
                         <option value="选择销售人员">选择销售人员</option>
                         <option value="销售人员">销售人员</option>
-
                     </select>
                 </div>
             </div>
@@ -66,7 +61,6 @@
 </div>
 
 <script src="../../lib/echarts/echarts.min.js"></script>
-
 <script src="../../lib/layui/layui.js"></script>
 <script>
     layui.use(["jquery","form","table", "okUtils", "okLayer"], function () {
@@ -75,15 +69,26 @@
         var myChart = echarts.init(document.getElementById('main'));
         var key='客户数量';
         var title=document.getElementById('obj').value+'每年新增加客户档案数量';
-        var xData= ["2016年", "2017年", "2018年"];
-        var yData=[ 93, 120, 130],yData1=[12, 13, 24];
+        var xData= ["2016年", "2017年", "2018年"],xData1=["第一季度","第二季度", "第三季度", "第四季度"],xData2=[];
+        for (var i=1;i<13;i++){
+            xData2.push(i+"月");
+        }
+        var yData=[ 93, 120, 130],yData1=[12, 13, 24],yDataJd1=getRandom(4,30,60),yDataJd2=getRandom(4,10,20),yDataM1=getRandom(12,30,60),yDataM2=getRandom(12,10,20);
         var option = {
             title: {
-                text: '折线图'
+                text: '公司每年新增客户档案数量',
+                x:'center',
+                y: 'top',
             },
             xAxis: {
                 type: 'category',
                 data: xData
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter(param){
+                    return  param? '<p>'+param.name+'<br/>客户数量:'+param.data+'</p>':"";
+                }
             },
             yAxis: {
                 type: 'value'
@@ -104,30 +109,87 @@
         let okLayer = layui.okLayer;
         let table = layui.table;
         let okMock = layui.okMock;
+        let obj="公司";//公司/销售人员
+        let year="";//年份/季度/月份
+        let unit="";
         // 表单提交
-
-        $("#seal").hide();
-
+        $("#seal,#month,#jd").hide();
+        //公司/销售人员每年新增客户档案数量
         form.on("select(choiceObj)", function (data) {
-            option. title.text=data.value+'每年新增加客户档案数量';
-
             if(data.value.indexOf("公司")>-1){
                 $("#seal").hide();
-                option.series[0].data=yData;
+                if(option. title.text.indexOf("每年")>-1){
+                    option.series[0].data=yData;
+                }else if(option. title.text.indexOf("季度")>-1){
+                    option.series[0].data=yDataJd1;
+                }else  if(option. title.text.indexOf("每月")>-1){
+                    option.series[0].data=yDataM1;
+                }
             }else{
                 $("#seal").show();
             }
+            obj=data.value;
+            option. title.text=obj+year+unit+'新增客户档案数量';
             myChart.setOption(option);
         });
+        //选择某个销售人员
         form.on("select(choiceSeal)", function (data) {
             if(data.value.indexOf("销售")>-1&&data.value.indexOf("选择")<0){
-                option.series[0].data=yData1;
+                obj=data.value;
+                option. title.text=obj+year+unit+'新增客户档案数量';
+                if(option. title.text.indexOf("每年")>-1){
+                    option.series[0].data=yData1;
+                }else if(option. title.text.indexOf("季度")>-1){
+                    option.series[0].data=yDataJd2;
+                }else  if(option. title.text.indexOf("每月")>-1){
+                    option.series[0].data=yDataM2;
+                }
                 myChart.setOption(option);
+
+            }
+        });
+        //选择年份 选择每一年份后会显示每一季度
+        form.on("select(choiceYear)", function (data) {
+            if (data.value.indexOf("选择")<0){
+                $("#jd").show();
+                year=data.value;
+                unit="每季度";
+                $('select:eq(1)').val('季度');
+                layui.form.render('select');
+                option.series[0].data=yDataJd1;
+                option.xAxis.data=xData1;
+            }else {
+                year="每年";
+                unit="";
+                $("#jd").hide();
+                option.series[0].data=yData;
+                option.xAxis.data=xData;
             }
 
+            option. title.text=obj+year+unit+'新增客户档案数量';
+            myChart.setOption(option);
+        });
+        //选择季度
+        form.on("select(choiceJd)", function (data) {
+            if(data.value.indexOf("季度")>-1){
+                option.xAxis.data=xData1;
+                option.series[0].data=yDataJd1;
+            }else{
+                option.xAxis.data=xData2;
+                option.series[0].data=yDataM1;
+            }
+            unit=data.value;
+            option. title.text=obj+year+unit+'新增客户档案数量';
+            myChart.setOption(option);
         });
 
-
+       function  getRandom(num,start,end) {
+           let a=[];
+           for(var i=0;i<num;i++){
+               a.push(Math.ceil(Math.random()*start+(end-start)));
+           }
+           return a;
+       }
     });
 </script>
 </body>

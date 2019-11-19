@@ -66,7 +66,6 @@
             let form = layui.form;
             let okUtils = layui.okUtils;
             let okLayer = layui.okLayer;
-
             form.on("submit(updateArticle)", function (data) {
                 okUtils.ajax("/article/updateArticle", "put", data.field, true).done(function (response) {
                     okLayer.greenTickMsg(response.msg, function () {

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>添加字段值</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../css/oksub.css">
+</head>
+<body>
+    <div class="ok-body">
+        <div class="layui-tab layui-tab-brief"   style="margin: 0 auto" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">数据备份</li>
+                <li>数据还原</li>
+            </ul>
+            <div class="layui-tab-content" style="height: 100px;">
+                <div class="layui-tab-item layui-show">
+                    <!--form表单-->
+                    <!--基本信息-->
+                    <form class="layui-form ok-form">
+                        <div class="layui-form-item">
+                            <label class="">首次备份时间</label>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="label" id="startTime" autocomplete="off" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="">备份时间间隔</label>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="label" id="endTime"  autocomplete="off" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="l">备份文件名称</label>
+                            <div class="layui-inline">
+
+                                <div class="layui-input-inline">
+                                    <input type="text" name="label"  autocomplete="off" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="">备份位置&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <div class="layui-inline">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="label" id="path" autocomplete="off" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="addArticle">保存</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">取消</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="layui-tab-item">
+                    <form class="layui-form ok-form">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+
+                                <div class="layui-input-inline">
+                                    <input type="file" name="label" autocomplete="off" class="layui-input" lay-verify="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="addArticle">还原</button>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--js逻辑-->
+    <script src="../../lib/layui/layui.js"></script>
+    <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+    <script>
+        layui.use(["form",'jquery','element',"laydate"], function(){
+            var $ = layui.jquery
+                ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+            let laydate = layui.laydate;
+            laydate.render({elem: "#startTime", type: "datetime"});
+            laydate.render({elem: "#endTime", type: "time"});
+            var form=layui.form;
+            form.render();
+            //触发事件
+            //Hash地址的定位
+            var layid = location.hash.replace(/^#test=/, '');
+            element.tabChange('test', layid);
+            element.on('tab(test)', function(elem){
+                location.hash = 'test='+ $(this).attr('lay-id');
+            });
+            document.getElementById('path').onclick=function () {
+                try
+                {
+                    window.open('file://c:\\');
+                }
+                catch(e)
+                {
+                    alert("error"+e);
+                }
+            }
+
+        });
+    </script>
+    <!-- 头工具栏模板 -->
+    <script type="text/html" id="toolbarTpl">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">添加</button>
+        </div>
+    </script>
+    <!-- 行工具栏模板 -->
+    <script type="text/html" id="operationTpl">
+        <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+        <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+    </script>
+</body>
+</html>

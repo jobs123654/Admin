@@ -16,25 +16,25 @@
         "children": [
             {
                 "title": "客户类型",
-                "href": "pages/often/article.html",
+                "href": "pages/fields/now-soft.html",
                 "icon": "&#xe62e;",
                 "spread": false
             },
             {
                 "title": "相关业务",
-                "href": "pages/often/message.html",
+                "href": "pages/fields/now-soft.html",
                 "icon": "&#xe62e;",
                 "spread": false
             },
             {
                 "title": "现用软件品牌",
-                "href": "pages/often/product.html",
+                "href": "pages/fields/now-soft.html",
                 "icon": "&#xe62e;",
                 "spread": false
             },
             {
                 "title": "信息来源",
-                "href": "pages/often/download.html",
+                "href": "pages/fields/now-soft.html",
                 "icon": "&#xe62e;",
                 "spread": false
             }
@@ -72,25 +72,23 @@
         "href": "",
         "icon": "&#xe62c;",
         "spread": false,
-
         "children": [
             {
-                "title": "图表1",
+                "title": "各阶段客户数量",
                 "fontFamily": "ok-icon",
                 "icon": "&#xe882;",
                 "spread": false,
                 "href": "pages/statistic/chart1.html"
             },
             {
-                "title": "图表2",
+                "title": "客户构成",
                 "fontFamily": "ok-icon",
                 "icon": "&#xe882;",
                 "spread": false,
                 "href": "pages/statistic/chart2.html"
-
             },
             {
-                "title": "图表3",
+                "title": "新增客户数量",
                 "fontFamily": "ok-icon",
                 "icon": "&#xe882;",
                 "spread": false,
@@ -104,49 +102,22 @@
         "href": "",
         "icon": "&#xe636;",
         "spread": false,
-        "children": [
-            {
-                "title": "Neditor",
-                "href": "pages/txtedit/Neditor.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "wangEditor",
-                "href": "pages/txtedit/wangEditor.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "CKEditor",
-                "href": "pages/txtedit/CKEditor.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "layedit",
-                "href": "pages/txtedit/layedit.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            }
-        ]
+        "href": "pages/salesman/user.html"
     },
     {
         "title": "系统安全",
-        "href": "",
         "icon": "&#xe62d;",
         "spread": false,
         "children": [
-
             {
-                "title": "Datatables",
-                "href": "pages/datatable/datatables.html",
+                "title": "数据备份与还原",
+                "href": "pages/settings/data-back.html",
                 "icon": "&#xe62e;",
                 "spread": false
             },
             {
-                "title": "bsgrid",
-                "href": "pages/datatable/bsgrid.html",
+                "title": "安全设置",
+                "href": "pages/settings/security-set.html",
                 "icon": "&#xe62e;",
                 "spread": false
             }

@@ -5,10 +5,8 @@
     "data":[
     {
         "id": "20191101",
-        "name": "向方",
-        "startTime": "2018-11-01",
-        "endTime": "2019-11-01",
-        "purchase": "是",
+        "name": "字段值",
+        "content": "说明",
         "createTime": "20181101",
         "createMan": "管理员"
     }

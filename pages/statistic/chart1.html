@@ -55,9 +55,16 @@
         var option = {
             title: {
                 text: title,
+                x:'center',
+                y: 'top',
             },
-            tooltip: {},
+            tooltip: {
+              formatter(param){
+                  return  param? '<p>'+param.name+'<br/>'+param.seriesName+':'+param.data+'</p>':"";
+              }
+            },
             legend: {
+                left: 'right',
                 data: [key]
             },
             xAxis: {
@@ -88,7 +95,6 @@
 
         form.on("select(choiceObj)", function (data) {
             option. title.text=data.value+'各阶段跟踪客户的数量';
-
             if(data.value.indexOf("公司")>-1){
                 $("#seal").hide();
                 option.series[0].data=yData;

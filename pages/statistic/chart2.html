@@ -21,7 +21,7 @@
                 <div  id="seal" class="layui-input-inline" >
                     <select  lay-filter="choiceSeal">
                         <option value="选择销售人员">选择销售人员</option>
-                        <option value="销售人员">销售人员</option>
+                        <option value="销售人员1">销售人员1</option>
 
                     </select>
                 </div>
@@ -43,38 +43,82 @@
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
         var key='客户数量';
-        var title=document.getElementById('obj').value+'客户构成';
-        var xData= ["信息收集", "人员确认", "价值和需求确认", "意向确认", "产品学习", "样例工程开发","实际项目开发","首次采购","重复采购","未跟踪"];
-        var yData=[25, 26, 16, 15, 10, 20,13,17,23],yData1=[5, 2, 6, 8, 2, 3,2,4,1];
+        var title=document.getElementById('obj').value+'客户构成';//2-\2-5\5-10\10-30\30-50\50-100\100+\未知
+        var xData= ["2-", "2-5", "5-10", "10-30", "30-50", "50-100","100+","未知"];
+        var yData=[{
+            name:'2-',
+            value:16
+        }, {
+            name:'2-5',
+            value:24
+        }, {
+            name:'5-10',
+            value:26
+        }, {
+            name:'10-30',
+            value:18
+        }, {
+            name:'30-50',
+            value:27
+        }, {
+            name:'50-100',
+            value:28
+        },{
+            name:'100+',
+            value:15
+        },{
+            name:'未知',
+            value:14
+        }],yData1=[{
+            name:'2-',
+            value:6
+        }, {
+            name:'2-5',
+            value:4
+        }, {
+            name:'5-10',
+            value:5
+        }, {
+            name:'10-30',
+            value:8
+        }, {
+            name:'30-50',
+            value:3
+        }, {
+            name:'50-100',
+            value:2
+        },{
+            name:'100+',
+            value:5
+        },{
+            name:'未知',
+            value:1
+        }];
         // 指定图表的配置项和数据
         option = {
             title : {
-                text: '某站点用户访问来源',
-                subtext: '纯属虚构',
-                x:'center'
+                text: '公司客户构成',
+                x:'center',
+                y: 'top',
             },
             tooltip : {
                 trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
+                formatter(param){
+                    return  param? '<p>客户价值:'+param.name+'<br/>客户数量:'+param.data.value+'</p>':"";
+                }
             },
             legend: {
                 orient: 'vertical',
-                left: 'left',
-                data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                left: 'right',
+                data: xData
             },
             series : [
                 {
-                    name: '访问来源',
+                    name: '客户数量',
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:335, name:'直接访问'},
-                        {value:310, name:'邮件营销'},
-                        {value:234, name:'联盟广告'},
-                        {value:135, name:'视频广告'},
-                        {value:1548, name:'搜索引擎'}
-                    ],
+                    data:yData,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -103,19 +147,21 @@
         $("#seal").hide();
 
         form.on("select(choiceObj)", function (data) {
-            option. title.text=data.value+'各阶段跟踪客户的数量';
-
+            option. title.text=data.value+'客户构成';
             if(data.value.indexOf("公司")>-1){
                 $("#seal").hide();
                 option.series[0].data=yData;
             }else{
                 $("#seal").show();
+                $('select:eq(1)').val('选择销售人员');
+                layui.form.render('select');
             }
             myChart.setOption(option);
         });
         form.on("select(choiceSeal)", function (data) {
             if(data.value.indexOf("销售")>-1&&data.value.indexOf("选择")<0){
                 option.series[0].data=yData1;
+                option. title.text=data.value+'客户构成';
                 myChart.setOption(option);
             }
 

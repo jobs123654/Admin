@@ -109,46 +109,45 @@
                 }
             });
                   function  add() {
-                      let data=[{
-                          title:"应用1",
-                          children:[
-                              {
-                                  title:"档案管理",
-                                  children: [
-                                      {
-                                          title:"录入档案",
-                                      },
-                                      {
-                                          title:"导入档案",
-                                      },
-                                      {
-                                          title:"导出档案",
-                                      },
-                                      {
-                                          title:"查询档案",
-                                      },
-                                      {
-                                          title:"打印档案",
-                                      },
-                                  ]
-                              },
-                          ]
-                      }];
-                      tree.render({
-                          elem: '#permissionTree',
-                          data: data,
-                          showCheckbox: false,
-                          id: 'demoId1',
-                          isJump: true,
-                          spread:true,
-                          click: function (obj) {
-                              var data = obj.data;
-                              //layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
-                          }
-                      });
+                      // let data=[{
+                      //     title:"应用1",
+                      //     children:[
+                      //         {
+                      //             title:"档案管理",
+                      //             children: [
+                      //                 {
+                      //                     title:"录入档案",
+                      //                 },
+                      //                 {
+                      //                     title:"导入档案",
+                      //                 },
+                      //                 {
+                      //                     title:"导出档案",
+                      //                 },
+                      //                 {
+                      //                     title:"查询档案",
+                      //                 },
+                      //                 {
+                      //                     title:"打印档案",
+                      //                 },
+                      //             ]
+                      //         },
+                      //     ]
+                      // }];
+                      // tree.render({
+                      //     elem: '#permissionTree',
+                      //     data: data,
+                      //     showCheckbox: false,
+                      //     id: 'demoId1',
+                      //     isJump: true,
+                      //     spread:true,
+                      //     click: function (obj) {
+                      //         var data = obj.data;
+                      //         //layer.msg('状态：' + obj.state + '<br>节点数据：' + JSON.stringify(data));
+                      //     }
+                      // });
 
                   }
-
         });
     </script>
     <!-- 头工具栏模板 -->

@@ -10,12 +10,7 @@
     <div class="ok-body">
         <!--form表单-->
         <form class="layui-form ok-form" lay-filter="filter">
-            <div class="layui-form-item">
-                <label class="layui-form-label">用户名</label>
-                <div class="layui-input-block">
-                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input" lay-verify="required">
-                </div>
-            </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">姓名</label>
                 <div class="layui-input-block">
@@ -34,39 +29,11 @@
                     <input type="text" name="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input" lay-verify="email">
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">密码</label>
-                <div class="layui-input-block">
-                    <input type="password" name="password" placeholder="请输入密码" autocomplete="off" class="layui-input" lay-verify="required">
-                </div>
-            </div>
+
             <div class="layui-form-item">
                 <label class="layui-form-label">出生日期</label>
                 <div class="layui-input-block">
                     <input type="text" name="createTime" placeholder="请选择出生日期 格式为yyyy-MM-dd HH:mm:ss" autocomplete="off" class="layui-input" id="birthday" lay-verify="birthdayVerify">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">角色</label>
-                <div class="layui-input-block">
-                    <select name="role">
-                        <option value="0">管理员</option>
-                        <option value="1">普通用户</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">兴趣</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="like[write]" value="1" title="写作">
-                    <input type="checkbox" name="like[read]" value="2" title="阅读">
-                    <input type="checkbox" name="like[run]" value="3" title="运动">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">状态</label>
-                <div class="layui-input-block">
-                    <input type="checkbox" name="status" lay-skin="switch" lay-text="启用|停用" checked value="0">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -84,7 +51,7 @@
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="edit">立即提交</button>
+                    <button class="layui-btn" lay-submit lay-filter="edit">保存</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>

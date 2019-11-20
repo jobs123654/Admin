@@ -5,11 +5,14 @@
     <title>添加字段值</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../../css/oksub.css">
+    <style>
+        #editPwd{
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div class="layui-container layui-form ok-form" >
-    <div class="layui-row">
-        <div class="layui-col-xs6">
+<form class="layui-container layui-form ok-form" >
             <div class="layui-form-item">
                 <label class="">同一账号多处同时登录</label>
                 <div class="layui-inline">
@@ -23,45 +26,50 @@
                 <label class="">强制用户修改密码</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="layui-inline">
                     <div class="layui-input-inline">
-                        <input type="radio" name="sex" value="关闭" title="关闭" checked>
-                        <input type="radio" name="sex" value="启用" title="启用">
+                        <input type="radio" name="sex1" value="关闭" lay-filter="password" title="关闭" checked>
+                        <input type="radio" name="sex1" value="启用" lay-filter="password" title="启用">
                     </div>
                 </div>
-
             </div>
-            <div class="layui-form-item">
-                <div class="layui-inline">
-                    <div class="layui-input-block layui-row">
-                        <div class="layui-col-xs6">
-                            <input type="checkbox" name="sex"  title="初次登录修改密码" checked>
+
+            <div class="layui-form-item" id="editPwd" >
+                <div class="layui-row">
+                    <div class="layui-col-md6">
+                        <div class="layui-input-inline">
+                            <input type="checkbox" name="set[login]" lay-skin="primary" title="初次登录修改密码" checked>
                         </div>
-                        <div class="layui-col-xs6">
-                            <label class="">说明：勾选了此选项，用户初次登录时需要修改密码。</label>
-                        </div>
+                        <label style="display: block; margin-top: 10px">说明：勾选了此选项，用户初次登录时需要修改密码。</label>
                     </div>
-                    <div class="layui-input-block layui-row">
-                        <div class="layui-col-xs6">
-                           <input type="checkbox" name="sex" title="定期修改密码">
+                </div>
+                <div class="layui-row" style="height: 10px"></div>
+                <div class="layui-row">
+                    <div>
+                        <div class="layui-input-inline">
+                            <input type="checkbox" name="set[pwd]"  lay-skin="primary"  title="定期修改密码">
                         </div>
-                        <div class="layui-col-xs6">
-                            <div class="layui-inline">
-                                <select >
+
+                        <div >
+                            <div class="layui-input-inline">
+                                <select>
                                     <option value="0">7天</option>
                                     <option value="0">30天</option>
                                 </select>
                             </div>
-                            <label>
-                                说明：根据所选的周期，定期强制修改密码。</label>
-
-
+                            <label>说明：根据所选的周期，定期强制修改密码。</label>
                         </div>
                     </div>
-
                 </div>
             </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="addArticle">保存</button>
+            <button type="reset" class="layui-btn layui-btn-primary">取消</button>
         </div>
     </div>
-</div>
+
+
+
+</form>
 
     <!--js逻辑-->
     <script src="../../lib/layui/layui.js"></script>
@@ -74,7 +82,9 @@
             laydate.render({elem: "#startTime", type: "datetime"});
             laydate.render({elem: "#endTime", type: "time"});
             var form=layui.form;
-            form.render();
+
+
+
             //触发事件
             //Hash地址的定位
             var layid = location.hash.replace(/^#test=/, '');
@@ -82,17 +92,14 @@
             element.on('tab(test)', function(elem){
                 location.hash = 'test='+ $(this).attr('lay-id');
             });
-            document.getElementById('path').onclick=function () {
-                try
-                {
-                    //window.open('file://c:\\');
-                }
-                catch(e)
-                {
-                    alert("error"+e);
-                }
-            }
-
+           form.on("radio(password)",function (data) {
+               if(data.value==="启用"){
+                   $("#editPwd").show();
+               }else{
+                   $("#editPwd").hide();
+               }
+           });
+            form.render();
         });
     </script>
     <!-- 头工具栏模板 -->

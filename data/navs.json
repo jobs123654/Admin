@@ -8,64 +8,11 @@
          "isCheck":false,
           "spread": false
     },
-     {
-        "title": "字段管理",
-        "href": "",
-        "icon": "&#xe705;",
-        "spread": false,
-        "children": [
-            {
-                "title": "客户类型",
-                "href": "pages/fields/now-soft.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "相关业务",
-                "href": "pages/fields/now-soft.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "现用软件品牌",
-                "href": "pages/fields/now-soft.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "信息来源",
-                "href": "pages/fields/now-soft.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            }
-        ]
-    },
     {
         "title": "用户管理",
-        "href": "",
+        "href": "pages/users/user.html",
         "icon": "&#xe66f;",
-        "spread": false,
-        "children": [
-            {
-                "title": "用户列表",
-                "href": "pages/users/user.html",
-                "fontFamily": "layui-icon",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "角色列表",
-                "href": "pages/users/role.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            },
-            {
-                "title": "权限列表",
-                "href": "pages/users/permission.html",
-                "icon": "&#xe62e;",
-                "spread": false
-            }
-        ]
+        "spread": false
     },
     {
         "title": "统计分析",
@@ -97,22 +44,8 @@
 
         ]
     },
-    {
-        "title": "系统设置",
-        "icon": "&#xe636;",
-        "spread": false,
-        "children":[
-            
-        ]
 
-    },
-    {
-        "title": "销售人员信息管理",
-        "href": "",
-        "icon": "&#xe636;",
-        "spread": false,
-        "href": "pages/salesman/user.html"
-    },
+
     {
         "title": "系统安全",
         "icon": "&#xe62d;",

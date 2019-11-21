@@ -130,14 +130,19 @@
                 cols: [[
                     {type: "checkbox", fixed: "left"},
                     {field: "id", title: "ID", width: 170, sort: true},
-                    {field: "title", title: "省份", width: 150},
-                    {field: "url", title: "客户名称", width: 250, templet: "#urlTpl"},
+                    {field: "title", title: "省份", width: 100},
+                    {field: "url", title: "客户名称", width: 100, templet: "#urlTpl"},
                     {field: "publisher", title: "客户类型", width: 100},
+                    {field: "publisher", title: "相关业务", width: 100},
+                    {field: "publisher", title: "潜在价值", width: 100},
                     {field: "readSize", title: "意向产品", width: 80},
+                    {field: "readSize", title: "跟踪阶段", width: 80},
                     {field: "isTop", title: "现用软件品牌", width: 100, align: "center", templet: "#topTpl"},
-                    {field: "status", title: "信息来源", width: 110, align: "center", templet: "#statusTpl"},
-                    {field: "createTime", title: "创建时间", width: 150},
-                    {field: "updateTime", title: "更新时间", width: 150},
+                    {field: "isTop", title: "信息提供人", width: 100, align: "center", templet: "#topTpl"},
+                    {field: "status", title: "信息来源", width: 100, align: "center", templet: "#statusTpl"},
+                    {field: "createTime", title: "跟进记录", width: 100},
+                    {field: "createTime", title: "创建时间", width: 100},
+                    {field: "updateTime", title: "更新时间", width: 100},
                     {title: "操作", width: 100, align: "center", fixed: "right", templet: "#operationTpl"}
                 ]],
                 done: function (res, curr, count) {
@@ -338,7 +343,6 @@
     <script type="text/html" id="operationTpl">
         <a href="javascript:" title="详情" lay-event="info"><i class="layui-icon">&#xe60b;</i></a>
         <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
-        <a href="javascript:" title="跟踪记录" lay-event="trace"><i class="layui-icon">&#xe60a;</i></a>
     </script>
 </body>
 </html>

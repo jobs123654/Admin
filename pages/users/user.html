@@ -5,26 +5,96 @@
     <title>用户列表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../../css/oksub.css">
+    <style>
+        li{
+            text-align: center;
+        }
+        li:hover{
+            background-color: lightgray;
+        }
+    </style>
 </head>
 <body>
-    <div class="ok-body">
+    <div class="ok-body layui-container">
         <!--模糊搜索区域-->
         <div class="layui-row">
-            <form class="layui-form layui-col-md12 ok-search">
-                <input class="layui-input" placeholder="账号" autocomplete="off" name="username">
-                <button class="layui-btn" lay-submit="" lay-filter="search">
-                    <i class="layui-icon">&#xe615;</i>
-                </button>
-            </form>
+           <div class="layui-col-md3" style="border-right: 1px solid lightgray">
+               <ul style="margin:10% 10%">
+                   <li><a href="#">root</a></li>
+                   <li><a href="#">用户1</a></li>
+                   <li><a href="#">用户2</a></li>
+               </ul>
+           </div>
+            <div class="layui-col-md6 layui-col-md-offset1">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>登录信息</legend>
+                </fieldset>
+                <div class="layui-row layui-form">
+                    <div class="layui-col-md4">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">账号</label>
+                            <div class="layui-input-inline">
+                                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">密码</label>
+                            <div class="layui-input-inline">
+                                <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">角色</label>
+                            <div class="layui-input-inline" >
+                                <select >
+                                    <option value="0">选择角色</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4" style="margin-top: 1%">
+                        <div class="layui-inline">
+                            <button class="layui-btn layui-btn-sm layui-btn-normal" type="button" lay-event="addLink">重置</button>
+                        </div>
+                    </div>
+                </div>
+
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>权限列表</legend>
+                </fieldset>
+                <div class="layui-form-item  layui-form">
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="set[login]" lay-skin="primary" title="档案录入" checked/>
+                </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="set[login]" lay-skin="primary" title="档案导入" checked/>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="set[login]" lay-skin="primary" title="档案导出" checked/>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="set[login]" lay-skin="primary" title="统计分析" checked/>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="set[login]" lay-skin="primary" title="字段管理" checked/>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox" name="set[login]" lay-skin="primary" title="销售人员信息管理" checked/>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="checkbox"  name="set[login]" lay-skin="primary" title="系统安全" checked/>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--数据表格-->
-        <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
     </div>
     <!--js逻辑-->
     <script src="../../lib/layui/layui.js"></script>
     <script>
-
-
         layui.use(["element", "table", "form", "laydate", "okLayer", "okUtils", "okMock",'layer'], function () {
             let table = layui.table;
             let form = layui.form;
@@ -33,7 +103,6 @@
             let layer = layui.layer;
             let okUtils = layui.okUtils;
             let okMock = layui.okMock;
-
             laydate.render({elem: "#startTime", type: "datetime"});
             laydate.render({elem: "#endTime", type: "datetime"});
 
@@ -89,7 +158,6 @@
                         break;
                 }
             });
-
             table.on("tool(tableFilter)", function (obj) {
                 let data = obj.data;
                 switch (obj.event) {
@@ -102,7 +170,6 @@
                     case "copyLogin":
                         copyLogin(data.id);
                         break;
-
                 }
             });
             function copyLogin(id) {
@@ -181,6 +248,7 @@
                     });
                 })
             }
+            form.render();
         })
     </script>
     <!-- 头工具栏模板 -->

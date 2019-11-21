@@ -8,7 +8,7 @@
      /*#month,#jd,#seal{*/
      /*    display: none;*/
      /*}*/
-     #seal,#month,#jd{
+     #seal,#jd{
          display: none;
      }
  </style>
@@ -16,7 +16,7 @@
 <body class="layui-container">
 <form class="ok-body layui-form">
     <div class="layui-row">
-          <div class="layui-col-md3">
+          <div class="layui-col-md2">
               <div class="layui-inline" id="year">
                   <div class="layui-input-inline">
                       <select  lay-filter="choiceYear">
@@ -38,7 +38,17 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md3">
+        <div class="layui-col-md2">
+            <div class="layui-inline"  id="perid">
+                <div class="layui-input-inline">
+                    <select  lay-filter="choicePerid">
+                        <option value="">选择阶段</option>
+                        <option value="">阶段1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md2">
             <div class="layui-inline">
                 <div class="layui-input-inline">
                     <select name="choiceObj" id="obj" lay-filter="choiceObj">
@@ -48,7 +58,7 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md3">
+        <div class="layui-col-md2">
             <div class="layui-inline" id="seal">
                 <div   class="layui-input-inline" >
                     <select   lay-filter="choiceSeal">
@@ -58,41 +68,26 @@
                 </div>
             </div>
         </div>
-        <div class="layui-col-md1">
-            <div class="layui-inline"  id="perid">
-                <div class="layui-input-inline">
-                    <select  lay-filter="choiceJd">
-                        <option value="">选择阶段</option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                        <option value=""></option>
-                    </select>
-                </div>
-            </div>
-        </div>
+
     </div>
 
     <div class="layui-row">
-<!--        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">-->
-<!--            <ul class="layui-tab-title">-->
-<!--                <li class="layui-this">数据图表</li>-->
-<!--                <li>数据表格</li>-->
-<!--            </ul>-->
-<!--            <div class="layui-tab-content" style="height: 100px;">-->
-<!--                <div class="layui-tab-item layui-show">-->
-<!--                  -->
-<!--                </div>-->
-<!--                <div class="layui-tab-item">内容2</div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">-->
+        <!--            <ul class="layui-tab-title">-->
+        <!--                <li class="layui-this">数据图表</li>-->
+        <!--                <li>数据表格</li>-->
+        <!--            </ul>-->
+        <!--            <div class="layui-tab-content" style="height: 100px;">-->
+        <!--                <div class="layui-tab-item layui-show">-->
+        <!--                  -->
+        <!--                </div>-->
+        <!--                <div class="layui-tab-item">内容2</div>-->
+        <!--            </div>-->
+        <!--        </div>-->
         <div id="main" style="width: 100%;height:400px;margin-top: 50px;">
         </div>
     </div>
-
-
 </form>
-
 <script src="../../lib/echarts/echarts.min.js"></script>
 <script src="../../lib/layui/layui.js"></script>
 <script>
@@ -115,7 +110,10 @@
             },
             xAxis: {
                 type: 'category',
-                data: xData
+                data: xData,
+                axisLabel: {
+                    interval:0
+                }
             },
             tooltip : {
                 trigger: 'item',
@@ -128,7 +126,18 @@
             },
             series: [{
                 data: yData,
-                type: 'line'
+                type: 'line',
+                itemStyle : {
+                    normal : {
+                        label: {
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+                                color: 'grey'
+                            }
+                        }
+                    }
+                },
             }]
         };
         // 使用刚指定的配置项和数据显示图表。

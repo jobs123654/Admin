@@ -114,13 +114,28 @@
                 data: [key]
             },
             xAxis: {
-                data:xData
+                data:xData,
+                axisLabel: {
+                    interval:0
+                }
             },
             yAxis: {},
             series: [{
                 name: key,
                 type: 'bar',
-                data:yData
+                data:yData,
+                barWidth : '30%',
+                itemStyle : {
+                    normal : {
+                        label: {
+                            show: true,
+                            position: 'top',
+                            textStyle: {
+                                color: 'grey'
+                            }
+                        }
+                    }
+                    },
             }]
         };
         // 使用刚指定的配置项和数据显示图表。

@@ -292,14 +292,22 @@
     </script>
     <!-- 头工具栏模板 -->
     <script type="text/html" id="toolbarTpl">
-        <div class="layui-btn-container">
+        <div class="layui-layout layui-layout-admin okadmin blue_theme">
+            <div class="layui-header okadmin-header" style="height: 30px;background-color: #f2f2f2">
 <!--            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量上架</button>-->
 <!--            <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>-->
 <!--            <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>-->
             <button class="layui-btn layui-btn-sm" lay-event="add">录入档案</button>
             <button class="layui-btn layui-btn-sm  layui-btn-normal" lay-event="import">导入档案</button>
-            <button class="layui-btn layui-btn-sm  layui-btn-radius" lay-event="filter"><i class="layui-icon">&#xe615;</i></button>
+
 <!--            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">导出档案</button>-->
+                <ul class="layui-nav layui-layout-right" style=" height: 40px">
+                    <li class="layui-nav-item" style="padding-bottom: 10px;position: relative;bottom: 30%">
+                        <input type="text" placeholder="输入档案名称" />
+                       <button lay-event="filter" > <a href="#" title="筛选"><i class="layui-icon"  >&#xe625;</i></a> </button>
+                    </li>
+                </ul>
+        </div>
         </div>
     </script>
     <!-- 链接模板 -->

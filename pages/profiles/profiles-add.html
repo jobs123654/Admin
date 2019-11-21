@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>添加文章</title>
+    <title>新增档案</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../../css/oksub.css">
 </head>
@@ -99,7 +99,7 @@
 <!-- -->
             <div class="layui-form-item">
                 <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="addArticle">确定</button>
+                    <button class="layui-btn"  lay-submit lay-filter="addArticle">确定</button>
                     <button type="reset" class="layui-btn layui-btn-primary">取消</button>
                 </div>
             </div>
@@ -110,10 +110,11 @@
     <script>
         layui.use(["form","table", "okUtils", "okLayer"], function () {
             let form = layui.form;
+            let table = layui.table;
             let okUtils = layui.okUtils;
             let okLayer = layui.okLayer;
-            let table = layui.table;
-            let okMock = layui.okMock;
+
+
             // 表单提交
             form.on("submit(addArticle)", function (data) {
                 okUtils.ajax("/article/addArticle", "post", data.field, true).done(function (response) {
@@ -127,7 +128,7 @@
             });
             //渲染联系人信息
            // 姓名/职务/电话/邮箱/QQ/微信
-             table.render({
+            let articleTable =   table.render({
                 elem: "#tableId",
                 url: 'http://192.168.0.22/Data/link.json',
                 limit: 20,
@@ -151,30 +152,60 @@
                      console.log(res, curr, count)
                  }
             });
+            form.on("submit(search)", function (data) {
+                articleTable.reload({
+                    where: data.field,
+                    page: {curr: 1}
+                });
+                return false;
+            });
             table.on("tool(tableFilter)", function (obj) {
                 let data = obj.data;
                 switch (obj.event) {
                     case "edit":
-                      alert("edit");
+
                         break;
                     case "del":
 
                         break;
                 }
             });
+            table.on("toolbar(tableFilter)", function (obj) {
+                switch (obj.event) {
+                    case "addLink":
+                        addLink();
+                        break;
+                }
+            });
+            function addLink() {
+                try {
+                    okLayer.open("添加联系人", "link-add.html", "40%", "40%", null, function () {
+                        articleTable.reload();
+                    })
+                }catch (e) {
+                    alert(e)
+                }
+            }
 
         });
     </script>
     <!-- 头工具栏模板 -->
     <script type="text/html" id="toolbarTpl">
         <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">添加</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" type="button" lay-event="addLink">添加</button>
         </div>
     </script>
     <!-- 行工具栏模板 -->
     <script type="text/html" id="operationTpl">
         <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
         <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+    </script>
+    <script type="text/html" id="logoTpl">
+        <image src="{{d.logo}}"/>
+    </script>
+
+    <script type="text/html" id="urlTpl">
+        <a href="{{d.url}}" target="_blank">{{d.url}}</a>
     </script>
 </body>
 </html>

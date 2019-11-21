@@ -17,12 +17,11 @@
         layui.use(["table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
             let table = layui.table;
             let form = layui.form;
-            let util = layui.util;
+
             let laydate = layui.laydate;
             let okLayer = layui.okLayer;
             let okUtils = layui.okUtils;
             let okMock = layui.okMock;
-            util.fixbar({});
             let articleTable =  table.render({
                 elem: "#tableId",
                 url: 'http://192.168.0.22/Data/trace.json',
@@ -150,7 +149,6 @@
 <!--            <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量下架</button>-->
             <button class="layui-btn layui-btn-sm" lay-event="add">添加跟踪记录</button>
             <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDelete">批量删除</button>
-
         </div>
     </script>
     <!-- 行工具栏模板 -->
@@ -158,7 +156,6 @@
         <a href="javascript:" title="编辑" lay-event="updateById"><i class="layui-icon">&#xe642;</i></a>
         <a href="javascript:" title="删除" lay-event="deleteById"><i class="layui-icon">&#xe640;</i></a>
     </script>
-
     <script type="text/html" id="logoTpl">
         <image src="{{d.logo}}"/>
     </script>
